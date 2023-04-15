@@ -3,6 +3,8 @@ package byow.Core;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 
+import java.util.List;
+
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
@@ -49,7 +51,13 @@ public class Engine {
         long seed = set.showSeed();
         TERenderer ter = set.showTE();
         BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
-        TETile[][] finalWorldFrame = null;
+        TETile[][]worldFrame = rooms.getTile();
+        List doorLocation = rooms.getOpen();
+        SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
+        worldFrame = setHallways.getWorldAfterHallways();
+        SetWall setWall = new SetWall(worldFrame);
+        TETile[][] finalWorldFrame = setWall.getWorld();
+        ter.renderFrame(finalWorldFrame);
         return finalWorldFrame;
     }
 }

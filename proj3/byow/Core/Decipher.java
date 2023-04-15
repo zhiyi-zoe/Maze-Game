@@ -20,7 +20,7 @@ public class Decipher {
             if (input.charAt(i) == 'N' || input.charAt(i) == 'n') {
                 a = true;
                 space = new TERenderer();//render a world without anything
-                space.initialize(width, height, 10, 5);
+                //space.initialize(width, height, 2, 5);
             }
         }
         seed = Long.parseLong(num);
