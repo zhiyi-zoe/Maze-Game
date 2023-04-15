@@ -48,7 +48,7 @@ public class Engine {
         // that works for many different input types.
         Decipher set = new Decipher(input, WIDTH, HEIGHT);
         long seed = set.showSeed();
-        TERenderer ter = set.showTE();
+        ter.initialize(WIDTH, HEIGHT);
         BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
         TETile[][]worldFrame = rooms.getTile();
         List doorLocation = rooms.getOpen();
