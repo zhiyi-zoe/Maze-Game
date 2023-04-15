@@ -45,7 +45,10 @@ public class Engine {
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
-
+        Decipher set = new Decipher(input, WIDTH + 20, HEIGHT + 10);
+        long seed = set.showSeed();
+        TERenderer ter = set.showTE();
+        BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
         TETile[][] finalWorldFrame = null;
         return finalWorldFrame;
     }
