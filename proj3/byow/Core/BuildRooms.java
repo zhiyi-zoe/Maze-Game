@@ -21,7 +21,7 @@ public class BuildRooms {
         RANDOM = new Random(seed);
         WIDTH = width;
         HEIGHT = height;
-        roomNum = RANDOM.nextInt(10) + 3;
+        roomNum = RANDOM.nextInt(20) + 7;
         world = new TETile[width][height];//initialize tiles
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
