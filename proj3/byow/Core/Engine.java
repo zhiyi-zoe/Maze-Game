@@ -40,24 +40,23 @@ public class Engine {
      * @return the 2D TETile[][] representing the state of the world
      */
     public TETile[][] interactWithInputString(String input) {
-        // TODO: Fill out this method so that it run the engine using the input
         // passed in as an argument, and return a 2D tile representation of the
         // world that would have been drawn if the same inputs had been given
         // to interactWithKeyboard().
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
-        Decipher set = new Decipher(input, WIDTH + 20, HEIGHT + 10);
+        Decipher set = new Decipher(input, WIDTH, HEIGHT);
         long seed = set.showSeed();
-        TERenderer ter = set.showTE();
+        ter = set.showTE();
         BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
         TETile[][]worldFrame = rooms.getTile();
-        List doorLocation = rooms.getOpen();
-        SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
-        worldFrame = setHallways.getWorldAfterHallways();
-        SetWall setWall = new SetWall(worldFrame);
-        TETile[][] finalWorldFrame = setWall.getWorld();
-        ter.renderFrame(finalWorldFrame);
-        return finalWorldFrame;
+        //List doorLocation = rooms.getOpen();
+        //SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
+        //worldFrame = setHallways.getWorldAfterHallways();
+        //SetWall setWall = new SetWall(worldFrame);
+        //TETile[][] finalWorldFrame = setWall.getWorld();
+        ter.renderFrame(worldFrame);
+        return worldFrame;
     }
 }
