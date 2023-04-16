@@ -51,12 +51,12 @@ public class Engine {
         ter.initialize(WIDTH, HEIGHT);
         BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
         TETile[][]worldFrame = rooms.getTile();
-        //List doorLocation = rooms.getOpen();
-        //SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
-        //worldFrame = setHallways.getWorldAfterHallways();
-        //SetWall setWall = new SetWall(worldFrame);
-        //TETile[][] finalWorldFrame = setWall.getWorld();
-        ter.renderFrame(worldFrame);
-        return worldFrame;
+        List doorLocation = rooms.getOpen();
+        SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
+        worldFrame = setHallways.getWorldAfterHallways();
+        SetWall setWall = new SetWall(worldFrame);
+        TETile[][] finalWorldFrame = setWall.getWorld();
+        ter.renderFrame(finalWorldFrame);
+        return finalWorldFrame;
     }
 }
