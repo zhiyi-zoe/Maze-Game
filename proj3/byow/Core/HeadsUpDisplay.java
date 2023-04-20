@@ -59,6 +59,8 @@ public class HeadsUpDisplay {
         }
         world[currentX][currentY] = nextAppearance;
     }
+    /* Please use creatMenu() in SetMenu Class, this one is not be used anymore.
+
     public void creatMenu() {
         StdDraw.clear(Color.BLACK);
         StdDraw.setPenColor(Color.WHITE);
@@ -72,4 +74,6 @@ public class HeadsUpDisplay {
         StdDraw.text(this.width/ 2, this.height / 2 - textGap / 2 / 2 - textGap / 2,
                 "Quit (Q)");
     }
+
+     */
 }
