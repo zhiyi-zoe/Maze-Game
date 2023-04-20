@@ -38,7 +38,7 @@ public class Deciding {
             a = false;
             seed = Long.parseLong(num);
             BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
-            TETile[][]worldFrame = rooms.getTile();
+            TETile[][] worldFrame = rooms.getTile();
             List doorLocation = rooms.getOpen();
             SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
             worldFrame = setHallways.getWorldAfterHallways();

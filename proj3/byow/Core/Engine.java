@@ -49,11 +49,23 @@ public class Engine {
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
-        Decipher set = new Decipher(input, WIDTH, HEIGHT);
+
+        Deciding set = new Deciding(WIDTH, HEIGHT);
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == 'l' || input.charAt(i) == 'L') {
+
+            }
+            set.changeEnv(input.charAt(i));
+            if (input.charAt(i) == 's' || input.charAt(i) == 'S') {
+                ter = set.showTE();
+                TETile[][] finalWorldFrame = set.showTile();
+            }
+        }
         long seed = set.showSeed();
         ter.initialize(WIDTH, HEIGHT);
         BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
-        TETile[][]worldFrame = rooms.getTile();
+        TETile[][] worldFrame = rooms.getTile();
         List doorLocation = rooms.getOpen();
         SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
         worldFrame = setHallways.getWorldAfterHallways();
