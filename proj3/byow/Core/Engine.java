@@ -4,6 +4,8 @@ import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 
 import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
 public class Engine {
     TERenderer ter = new TERenderer();
@@ -16,6 +18,7 @@ public class Engine {
      * including inputs from the main menu.
      */
     public void interactWithKeyboard() {
+
     }
 
     /**
@@ -51,12 +54,12 @@ public class Engine {
         ter.initialize(WIDTH, HEIGHT);
         BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
         TETile[][]worldFrame = rooms.getTile();
-        //List doorLocation = rooms.getOpen();
-        //SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
-        //worldFrame = setHallways.getWorldAfterHallways();
-        //SetWall setWall = new SetWall(worldFrame);
-        //TETile[][] finalWorldFrame = setWall.getWorld();
-        ter.renderFrame(worldFrame);
-        return worldFrame;
+        List doorLocation = rooms.getOpen();
+        SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
+        worldFrame = setHallways.getWorldAfterHallways();
+        SetWall setWall = new SetWall(worldFrame);
+        TETile[][] finalWorldFrame = setWall.getWorld();
+        ter.renderFrame(finalWorldFrame);
+        return finalWorldFrame;
     }
 }
