@@ -7,6 +7,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.StdDraw;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class Deciding {
     private int HEIGHT;
     private int[] avatarPos;
     private boolean quit;
+    private boolean isNew;
 
     //private String hasString = "wWaAsSdDqQ:NnLl";
     public Deciding(int width, int height) {
@@ -31,6 +33,7 @@ public class Deciding {
         already = "";//用来记录前面都输入了啥
         a = false;
         b = false;
+        isNew = false;
         WIDTH = width;
         HEIGHT = height;
         quit = false;
@@ -39,7 +42,7 @@ public class Deciding {
     public void changeEnv(char input) {
         //判断seed输入结束，创建新世界
         already += input;
-        if (input == 's' || input == 'S') {
+        if (a && (input == 's' || input == 'S')) {
             a = false;
             seed = Long.parseLong(num);
             BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
@@ -49,6 +52,11 @@ public class Deciding {
             worldFrame = setHallways.getWorldAfterHallways();
             SetWall setWall = new SetWall(worldFrame);
             worldFrameFin = setWall.getWorld();
+            SetAvatar newAvatar = new SetAvatar(worldFrameFin, doorLocation);
+            avatarPos = newAvatar.buildAvatar();
+            isNew = true;
+        } else {
+            isNew = false;
         }
         if (a) {
             num = num + input;
@@ -58,27 +66,29 @@ public class Deciding {
             a = true;
             space = new TERenderer();
             space.initialize(WIDTH + 20, HEIGHT + 20, 10, 10);
-            Out out = new Out("output.txt");
+            Out out = new Out("./out/production/proj3/output.txt");
             out.print();
         }
-        //准备输入quit指令
-        if (input == ':') {
-            b = true;
-        }
         if (b && (input == 'Q' || input == 'q')) {
-            Out out = new Out("output.txt");
             String str = already.substring(0, already.length() - 2);
+            Out out = new Out("./out/production/proj3/output.txt");
             out.print(str);
             quit = true;
         } else {
             b = false;
             quit = false;
         }
+        //准备输入quit指令
+        if (input == ':') {
+            b = true;
+            System.out.println("hh");
+        }
+
         if (input == 'w' || input == 'W') {
             MoveControl MC = new MoveControl(worldFrameFin, avatarPos);
             avatarPos = MC.oneMovement('W');
         }
-        if (input == 's' || input == 'S') {
+        if (!a && (input == 's' || input == 'S')) {
             MoveControl MC = new MoveControl(worldFrameFin, avatarPos);
             avatarPos = MC.oneMovement('S');
         }
@@ -91,7 +101,7 @@ public class Deciding {
             avatarPos = MC.oneMovement('D');
         }
         if (input == 'L' || input == 'l') {
-            In in = new In("output.txt");
+            In in = new In("./out/production/proj3/output.txt");
             String savedLine = in.readLine();
             already += savedLine;
             already = already.substring(1);
@@ -117,6 +127,9 @@ public class Deciding {
 
     public boolean isQuit() {
         return quit;
+    }
+    public boolean isNew() {
+        return isNew;
     }
 
 }

@@ -13,7 +13,7 @@ public class Engine {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
-    private String hasString = "wWaAsSdD";
+    private String hasString = "wWaAdD";
     TETile[][] finalWorldFrame;
 
     /**
@@ -54,11 +54,14 @@ public class Engine {
         // that works for many different input types.
         SetMenu menu = new SetMenu(WIDTH + 20, HEIGHT + 20);
         menu.creatMenu();
+        StdDraw.show();
+        StdDraw.pause(1000);
         Deciding set = new Deciding(WIDTH, HEIGHT);
+
 
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == 'l' || input.charAt(i) == 'L') {
-                File file = new File("output.txt");
+                File file = new File("./out/production/proj3/output.txt");
                 if (!file.exists() || file.length() == 0) {
                     System.exit(0);
                     break;
@@ -69,7 +72,6 @@ public class Engine {
                 for (int j = 0; j < smallStr.length(); j++) {
                     char thisChar= smallStr.charAt(j);
                     set.changeEnv(thisChar);
-
                 }
                 ter = set.showTE();
                 finalWorldFrame = set.showTile();
@@ -78,20 +80,26 @@ public class Engine {
                 //以上为恢复上次保存的东西
             }
             set.changeEnv(input.charAt(i));
+
             if (input.charAt(i) == 'q' || input.charAt(i) == 'Q') {
                 if (set.isQuit()) {
                     System.exit(0);
-                    break;
                 }
             }
             //生成初始界面
             if (input.charAt(i) == 's' || input.charAt(i) == 'S') {
-                ter = set.showTE();
-                finalWorldFrame = set.showTile();
-                ter.renderFrame(finalWorldFrame);
-                StdDraw.pause(1000);
+                if (set.isNew()) {
+                    ter = set.showTE();
+                    finalWorldFrame = set.showTile();
+                    ter.renderFrame(finalWorldFrame);
+                    StdDraw.pause(1000);
+                } else {
+                    finalWorldFrame = set.showTile();
+                    ter.renderFrame(finalWorldFrame);
+                    StdDraw.pause(1000);
+                }
             }
-            //四个移动，每次pause1秒
+            //三个移动，每次pause1秒
             char m = input.charAt(i);
             if (hasString.indexOf(m) != -1) {
                 finalWorldFrame = set.showTile();
