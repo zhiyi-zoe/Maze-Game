@@ -2,6 +2,7 @@ package byow.Core;
 
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
+import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.List;
 import java.io.File;
@@ -12,6 +13,8 @@ public class Engine {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
+    private String hasString = "wWaAsSdD";
+    TETile[][] finalWorldFrame;
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -49,29 +52,53 @@ public class Engine {
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
-
+        SetMenu menu = new SetMenu(WIDTH + 20, HEIGHT + 20);
+        menu.creatMenu();
         Deciding set = new Deciding(WIDTH, HEIGHT);
 
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == 'l' || input.charAt(i) == 'L') {
+                File file = new File("output.txt");
+                if (!file.exists() || file.length() == 0) {
+                    System.exit(0);
+                    break;
+                }
+                set.changeEnv(input.charAt(i));
+                String smallStr = set.showString();
+                set = new Deciding(WIDTH, HEIGHT);
+                for (int j = 0; j < smallStr.length(); j++) {
+                    char thisChar= smallStr.charAt(j);
+                    set.changeEnv(thisChar);
 
+                }
+                ter = set.showTE();
+                finalWorldFrame = set.showTile();
+                ter.renderFrame(finalWorldFrame);
+                StdDraw.pause(1000);
+                //以上为恢复上次保存的东西
             }
             set.changeEnv(input.charAt(i));
+            if (input.charAt(i) == 'q' || input.charAt(i) == 'Q') {
+                if (set.isQuit()) {
+                    System.exit(0);
+                    break;
+                }
+            }
+            //生成初始界面
             if (input.charAt(i) == 's' || input.charAt(i) == 'S') {
                 ter = set.showTE();
-                TETile[][] finalWorldFrame = set.showTile();
+                finalWorldFrame = set.showTile();
+                ter.renderFrame(finalWorldFrame);
+                StdDraw.pause(1000);
+            }
+            //四个移动，每次pause1秒
+            char m = input.charAt(i);
+            if (hasString.indexOf(m) != -1) {
+                finalWorldFrame = set.showTile();
+                ter.renderFrame(finalWorldFrame);
+                StdDraw.pause(1000);
             }
         }
-        long seed = set.showSeed();
-        ter.initialize(WIDTH, HEIGHT);
-        BuildRooms rooms = new BuildRooms(seed, WIDTH, HEIGHT);
-        TETile[][] worldFrame = rooms.getTile();
-        List doorLocation = rooms.getOpen();
-        SetHallways setHallways = new SetHallways(worldFrame, doorLocation);
-        worldFrame = setHallways.getWorldAfterHallways();
-        SetWall setWall = new SetWall(worldFrame);
-        TETile[][] finalWorldFrame = setWall.getWorld();
-        ter.renderFrame(finalWorldFrame);
-        return finalWorldFrame;
+        return set.showTile();
     }
 }

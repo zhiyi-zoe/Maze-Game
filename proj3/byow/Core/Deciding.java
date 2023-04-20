@@ -5,6 +5,7 @@ import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
+import edu.princeton.cs.algs4.StdDraw;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -22,6 +23,8 @@ public class Deciding {
     private int WIDTH;
     private int HEIGHT;
     private int[] avatarPos;
+    private boolean quit;
+
     //private String hasString = "wWaAsSdDqQ:NnLl";
     public Deciding(int width, int height) {
         num = "";//seed
@@ -30,7 +33,9 @@ public class Deciding {
         b = false;
         WIDTH = width;
         HEIGHT = height;
+        quit = false;
     }
+
     public void changeEnv(char input) {
         //判断seed输入结束，创建新世界
         already += input;
@@ -62,11 +67,12 @@ public class Deciding {
         }
         if (b && (input == 'Q' || input == 'q')) {
             Out out = new Out("output.txt");
-            String str = already.substring(0,already.length() - 2);
+            String str = already.substring(0, already.length() - 2);
             out.print(str);
-
+            quit = true;
         } else {
             b = false;
+            quit = false;
         }
         if (input == 'w' || input == 'W') {
             MoveControl MC = new MoveControl(worldFrameFin, avatarPos);
@@ -92,13 +98,25 @@ public class Deciding {
         }
 
     }
+
     public TERenderer showTE() {
         return space;
     }
+
     public TETile[][] showTile() {
         return worldFrameFin;
     }
+
     public long showSeed() {
         return seed;
     }
+
+    public String showString() {
+        return already;
+    }
+
+    public boolean isQuit() {
+        return quit;
+    }
+
 }
