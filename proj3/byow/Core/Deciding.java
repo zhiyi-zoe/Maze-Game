@@ -2,6 +2,7 @@ package byow.Core;
 
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
+import byow.TileEngine.Tileset;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
 import java.util.List;
@@ -30,6 +31,12 @@ public class Deciding {
         WIDTH = width;
         HEIGHT = height;
         quit = false;
+        worldFrameFin = new TETile[width][height];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                worldFrameFin[i][j] = Tileset.NOTHING;
+            }
+        }
     }
 
     public void changeEnv(char input) {

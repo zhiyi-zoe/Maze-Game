@@ -3,6 +3,8 @@ package byow.Core;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 import edu.princeton.cs.algs4.StdDraw;
+
+import java.awt.*;
 import java.io.File;
 
 
@@ -26,7 +28,9 @@ public class Engine {
          */
         SetMenu menu = new SetMenu(WIDTH + 2 * OFFSET, HEIGHT + 2 * OFFSET);
         boolean gameBegin = false;
+        boolean showMap = false;
         Deciding set1 = new Deciding(WIDTH, HEIGHT);
+        boolean showSeed = false;
         while (true) {
             if (!gameBegin) {
                 menu.creatMenu();
@@ -50,12 +54,13 @@ public class Engine {
                     finalWorldFrame = set1.showTile();
                     ter.renderFrame(finalWorldFrame);
                     StdDraw.show();
-                    continue;
                     //以上为恢复上次保存的东西
                 }
                 set1.changeEnv(a);//进行改变
                 if (a == 'n' || a == 'N') {
 
+                    showSeed = true;
+                    gameBegin = true;
                 }
                 if (a == 'q' || a == 'Q') {
                     gameBegin = true;
@@ -65,13 +70,23 @@ public class Engine {
                 }
                 //生成初始界面
                 if (a == 's' || a == 'S') {
-                    gameBegin = true;
+                    showMap = true;
+                    showSeed = false;
                     if (set1.isNew()) {
                         ter = set1.showTE();
                     }
                 }
+
             }
-            if (gameBegin) {
+            if (showSeed) {
+                StdDraw.clear(Color.BLACK);
+                String into = set1.getAlready();
+                StdDraw.setPenColor(Color.WHITE);
+                StdDraw.text(WIDTH / 2 + OFFSET, HEIGHT / 2 + OFFSET, into);
+                StdDraw.show();
+            }
+
+            if (showMap) {
                 finalWorldFrame = set1.showTile();
                 ter.renderFrame(finalWorldFrame);
                 HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set1.showAva());
