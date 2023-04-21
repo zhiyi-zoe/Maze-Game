@@ -19,7 +19,7 @@ public class SetWall {
 
     public void buildWall(int x, int y) {
         TETile currType = world[x][y];
-        if (currType.equals(Tileset.FLOOR)) {
+        if (!(currType.equals(Tileset.WALL) || currType.equals(Tileset.NOTHING))) {
             for (int i = -1; i < 2; i++) {
                 for (int j = -1; j < 2; j++) {
                     TETile adjacentType = world[x + i][y + j];

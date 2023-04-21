@@ -31,7 +31,6 @@ public class HeadsUpDisplay {
             TETile current = world[mouseX][mouseY];
             description = current.description();
         }
-        System.out.println(description);
         return description;
     }
     public TETile[][] getWorld() {
