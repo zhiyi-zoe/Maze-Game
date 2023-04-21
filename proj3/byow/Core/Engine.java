@@ -50,11 +50,14 @@ public class Engine {
                         char thisChar= smallStr.charAt(j);
                         set1.changeEnv(thisChar);
                     }
+                    showMap = true;
                     ter = set1.showTE();
+                    /**
                     finalWorldFrame = set1.showTile();
                     ter.renderFrame(finalWorldFrame);
                     StdDraw.show();
                     //以上为恢复上次保存的东西
+                     */
                 }
                 set1.changeEnv(a);//进行改变
                 if (a == 'n' || a == 'N') {
@@ -81,8 +84,9 @@ public class Engine {
             if (showSeed) {
                 StdDraw.clear(Color.BLACK);
                 String into = set1.getAlready();
+                into = into.substring(1);
                 StdDraw.setPenColor(Color.WHITE);
-                StdDraw.text(WIDTH / 2 + OFFSET, HEIGHT / 2 + OFFSET, into);
+                StdDraw.text(WIDTH / 2 + OFFSET, HEIGHT / 2 + OFFSET, "Your Seed: " + into);
                 StdDraw.show();
             }
 
