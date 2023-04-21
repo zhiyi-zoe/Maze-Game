@@ -23,18 +23,62 @@ public class Engine {
      */
     public void interactWithKeyboard() {
         //初始页面呈现
+        /**
+         * 可能需要把输入n时切换一个界面，显示“请输入seed，以s结尾”，并实时呈现输入的seed。其他显示地图的页面上需要呈现已经输入了哪些东西->调用set1.getAlready()即可。
+         */
         SetMenu menu = new SetMenu(WIDTH + 20, HEIGHT + 20);
         boolean gameBegin = false;
-        while (!gameBegin) {
-            menu.creatMenu();
-            StdDraw.pause(500);
-            //我需要判断输入的是什么，然后如果是nlq，改gameBegin
-        }
-        Deciding set = new Deciding(WIDTH, HEIGHT);
+        Deciding set1 = new Deciding(WIDTH, HEIGHT);
         while (true) {
+            if (!gameBegin) {
+                menu.creatMenu();
+            }
             if (StdDraw.hasNextKeyTyped()) {
                 char a = StdDraw.nextKeyTyped();
+                if (a == 'l' || a == 'L') {
+                    gameBegin = true;
+                    File file = new File("./out/production/proj3/output.txt");
+                    if (!file.exists() || file.length() == 0) {
+                        System.exit(0);
+                    }
+                    set1.changeEnv(a);
+                    String smallStr = set1.showString();
+                    set1 = new Deciding(WIDTH, HEIGHT);
+                    for (int j = 0; j < smallStr.length(); j++) {
+                        char thisChar= smallStr.charAt(j);
+                        set1.changeEnv(thisChar);
+                    }
+                    ter = set1.showTE();
+                    finalWorldFrame = set1.showTile();
+                    ter.renderFrame(finalWorldFrame);
+                    StdDraw.show();
+                    continue;
+                    //以上为恢复上次保存的东西
+                }
+                set1.changeEnv(a);//进行改变
+                if (a == 'q' || a == 'Q') {
+                    gameBegin = true;
+                    if (set1.isQuit()) {
+                        System.exit(0);
+                    }
+                }
+                //生成初始界面
+                if (a == 's' || a == 'S') {
+                    gameBegin = true;
+                    if (set1.isNew()) {
+                        ter = set1.showTE();
+                    }
+                }
 
+            }
+            if (gameBegin) {
+                finalWorldFrame = set1.showTile();
+                ter.renderFrame(finalWorldFrame);
+                HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set1.showAva());
+                String description = display.mouseText();
+                StdDraw.textLeft(OFFSET, OFFSET, description);
+                display.normalMenu();
+                StdDraw.show();
             }
         }
     }
@@ -80,7 +124,6 @@ public class Engine {
                 File file = new File("./out/production/proj3/output.txt");
                 if (!file.exists() || file.length() == 0) {
                     System.exit(0);
-                    break;
                 }
                 set.changeEnv(input.charAt(i));
                 String smallStr = set.showString();

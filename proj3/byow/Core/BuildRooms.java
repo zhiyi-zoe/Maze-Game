@@ -37,16 +37,23 @@ public class BuildRooms {
             int y = a.getyCord();
             int m = a.getWidth();
             int n = a.getHeight();
+            int[] g = a.getCoin();
+            int k = g[0];
+            int h = g[1];
             for (int o = x; o < x + m; o++) {
                 for (int p = y; p < y + n; p++) {
-                    world[o][p] = Tileset.FLOOR;
+                    if (o == k && p == h) {
+                        world[o][p] = Tileset.FLOWER;
+                    } else {
+                        world[o][p] = Tileset.FLOOR;
+                    }
                 }
             }
             int[] gg = new int[2];
             gg[0] = a.getOpenX();
             gg[1] = a.getOpenY();
             openList.add(gg);
-            coinPos.add(a.getCoin());
+            coinPos.add(g);
         }
     }
     private class oneRoom {
@@ -81,7 +88,7 @@ public class BuildRooms {
                 coin[1] = y;
                 for (int i = xCord - 1; i < xCord + width; i++) {
                     for (int j = yCord - 1; j < yCord + height; j++) {
-                        if (world[i][j] == Tileset.FLOOR) {
+                        if (world[i][j] == Tileset.FLOOR || world[i][j] == Tileset.FLOWER) {
                             isOverlap = true;//有重叠
                         }
                     }

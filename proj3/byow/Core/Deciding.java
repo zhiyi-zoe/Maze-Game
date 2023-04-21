@@ -127,5 +127,8 @@ public class Deciding {
     public int[] showAva() {
         return avatarPos;
     }
+    public String getAlready() {
+        return already;
+    }
 
 }
