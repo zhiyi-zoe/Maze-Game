@@ -70,8 +70,17 @@ public class Deciding {
         }
         if (b && (input == 'Q' || input == 'q')) {
             String str = already.substring(0, already.length() - 2);
-            Out out = new Out("./out/production/proj3/output.txt");
-            out.print(str);
+            try {
+                Out out = new Out("output.txt");
+                out.print(str);
+
+            } catch (Exception e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+            //Out out = new Out("output.txt");
+
+            //out.print(str);
             quit = true;
         } else {
             b = false;
@@ -100,7 +109,7 @@ public class Deciding {
             avatarPos = mControl.oneMovement('D');
         }
         if (input == 'L' || input == 'l') {
-            In in = new In("./out/production/proj3/output.txt");
+            In in = new In("output.txt");
             String savedLine = in.readLine();
             already += savedLine;
             already = already.substring(1);

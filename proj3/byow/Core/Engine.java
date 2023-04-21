@@ -37,7 +37,7 @@ public class Engine {
                 char a = StdDraw.nextKeyTyped();
                 if (a == 'l' || a == 'L') {
                     gameBegin = true;
-                    File file = new File("./out/production/proj3/output.txt");
+                    File file = new File("output.txt");
                     if (!file.exists() || file.length() == 0) {
                         System.exit(0);
                     }
@@ -138,7 +138,7 @@ public class Engine {
 
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == 'l' || input.charAt(i) == 'L') {
-                File file = new File("./out/production/proj3/output.txt");
+                File file = new File("output.txt");
                 if (!file.exists() || file.length() == 0) {
                     System.exit(0);
                 }
