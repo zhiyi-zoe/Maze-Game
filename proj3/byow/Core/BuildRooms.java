@@ -16,6 +16,7 @@ public class BuildRooms {
     private int WIDTH;
     private int HEIGHT;
     private TETile[][] world;
+    private ArrayList<int[]> coinPos;
     public BuildRooms(long sed, int width, int height) {
         seed = sed;
         RANDOM = new Random(seed);
@@ -29,6 +30,7 @@ public class BuildRooms {
             }
         }
         openList = new ArrayList<>();
+        coinPos = new ArrayList<>();
         for (int i = 0; i < roomNum; i++) {
             oneRoom a = new oneRoom(world);
             int x = a.getxCord();
@@ -44,6 +46,7 @@ public class BuildRooms {
             gg[0] = a.getOpenX();
             gg[1] = a.getOpenY();
             openList.add(gg);
+            coinPos.add(a.getCoin());
         }
     }
     private class oneRoom {
@@ -56,6 +59,7 @@ public class BuildRooms {
         private TETile[][] spaceAll;
         private int openX;
         private int openY;
+        private int[] coin = new int[2];
         public oneRoom(TETile[][] world) {
             spaceAll = world;
             boolean isOverlap = false;
@@ -71,6 +75,10 @@ public class BuildRooms {
                 if (yCord + height >= HEIGHT) {
                     height = HEIGHT - yCord - 1;
                 }
+                int x = RANDOM.nextInt(width) + xCord;
+                int y = RANDOM.nextInt(height) + yCord;
+                coin[0] = x;
+                coin[1] = y;
                 for (int i = xCord - 1; i < xCord + width; i++) {
                     for (int j = yCord - 1; j < yCord + height; j++) {
                         if (world[i][j] == Tileset.FLOOR) {
@@ -121,12 +129,18 @@ public class BuildRooms {
         public int getOpenY() {
             return openY;
         }
+        public int[] getCoin() {
+            return coin;
+        }
     }
     public List getOpen() {
         return openList;
     }
     public TETile[][] getTile() {
         return world;
+    }
+    public List getCoin() {
+        return coinPos;
     }
     public static void main(String[] args) {
         //用于测试，可删

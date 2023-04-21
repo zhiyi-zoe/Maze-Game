@@ -74,6 +74,7 @@ public class Engine {
         Deciding set = new Deciding(WIDTH, HEIGHT);
 
 
+
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == 'l' || input.charAt(i) == 'L') {
                 File file = new File("./out/production/proj3/output.txt");
@@ -118,6 +119,7 @@ public class Engine {
                     finalWorldFrame = set.showTile();
                     ter.renderFrame(finalWorldFrame);
                     StdDraw.pause(1000);
+
                 }
             }
             //三个移动，每次pause1秒
