@@ -70,6 +70,9 @@ public class HeadsUpDisplay {
         StdDraw.textLeft(OFFSET * (2 * 2 + 2), height + OFFSET + OFFSET / 2, "Right (D)");
         StdDraw.textLeft(OFFSET * 2 * 2 * 2 - OFFSET / 2, height + OFFSET + OFFSET / 2, "Quit Game (:Q)");
     }
+    public void enterSeed(String seed) {
+        StdDraw.text(width / 2 + OFFSET, height / 2 + OFFSET, seed);
+    }
     /* Please use creatMenu() in SetMenu Class, this one is not be used anymore.
 
     public void creatMenu() {
