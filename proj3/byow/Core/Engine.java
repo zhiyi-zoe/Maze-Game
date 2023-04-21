@@ -160,7 +160,8 @@ public class Engine {
 
             if (input.charAt(i) == 'q' || input.charAt(i) == 'Q') {
                 if (set.isQuit()) {
-                    System.exit(0);
+                    //System.exit(0);
+                    break;
                 }
             }
             //生成初始界面
