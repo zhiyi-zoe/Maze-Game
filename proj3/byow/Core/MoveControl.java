@@ -27,8 +27,9 @@ public class MoveControl {
         }
         TETile next = world[currentX + moveX][currentY + moveY];
         if (!next.equals(Tileset.WALL)) {
+            TETile avatarAppearance = world[currentX][currentY];
             world[currentX][currentY] = Tileset.FLOOR;
-            world[currentX + moveX][currentY + moveY] = Tileset.AVATAR;
+            world[currentX + moveX][currentY + moveY] = avatarAppearance;
             result[0] = currentX + moveX;
             result[1] = currentY + moveY;
         }
