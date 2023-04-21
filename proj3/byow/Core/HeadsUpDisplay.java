@@ -23,8 +23,6 @@ public class HeadsUpDisplay {
         this.appearanceList = creatAppearanceList();
     }
     public String mouseText() {
-        //Font fontSmall = new Font("Monaco", Font.BOLD, 20);
-        //StdDraw.setFont(fontSmall);
         StdDraw.setPenColor(Color.WHITE);
         int mouseX = (int) StdDraw.mouseX() - offset;
         int mouseY = (int) StdDraw.mouseY() - offset;
@@ -33,6 +31,7 @@ public class HeadsUpDisplay {
             TETile current = world[mouseX][mouseY];
             description = current.description();
         }
+        System.out.println(description);
         return description;
         //int numYTiles = height;
         //StdDraw.text(0, numYTiles, description);

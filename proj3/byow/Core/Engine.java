@@ -13,6 +13,7 @@ public class Engine {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
+    public static final int OFFSET = 10;
     private String hasString = "wWaAdD";
     TETile[][] finalWorldFrame;
 
@@ -110,8 +111,7 @@ public class Engine {
                     StdDraw.pause(1000);
                     HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
                     String description = display.mouseText();
-                    int numYTiles = HEIGHT;
-                    StdDraw.text(0, numYTiles, description);
+                    StdDraw.textLeft(OFFSET, OFFSET, description);
                     StdDraw.show();
                     StdDraw.pause(1000);
                 } else {
