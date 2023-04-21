@@ -14,6 +14,7 @@ public class Engine {
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
     public static final int OFFSET = 10;
+    public static final int PAUSETIME = 1000;
     private String hasString = "wWaAdD";
     TETile[][] finalWorldFrame;
 
@@ -23,9 +24,6 @@ public class Engine {
      */
     public void interactWithKeyboard() {
         //初始页面呈现
-        /**
-         * 可能需要把输入n时切换一个界面，显示“请输入seed，以s结尾”，并实时呈现输入的seed。其他显示地图的页面上需要呈现已经输入了哪些东西->调用set1.getAlready()即可。
-         */
         SetMenu menu = new SetMenu(WIDTH + 2 * OFFSET, HEIGHT + 2 * OFFSET);
         boolean gameBegin = false;
         boolean showMap = false;
@@ -47,7 +45,7 @@ public class Engine {
                     String smallStr = set1.showString();
                     set1 = new Deciding(WIDTH, HEIGHT);
                     for (int j = 0; j < smallStr.length(); j++) {
-                        char thisChar= smallStr.charAt(j);
+                        char thisChar = smallStr.charAt(j);
                         set1.changeEnv(thisChar);
                     }
                     showMap = true;
@@ -59,7 +57,7 @@ public class Engine {
                     //以上为恢复上次保存的东西
                      */
                 }
-                set1.changeEnv(a);//进行改变
+                set1.changeEnv(a); //进行改变
                 if (a == 'n' || a == 'N') {
 
                     showSeed = true;
@@ -130,9 +128,9 @@ public class Engine {
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
-        SetMenu menu = new SetMenu(WIDTH + 20, HEIGHT + 20);
+        SetMenu menu = new SetMenu(WIDTH + OFFSET * 2, HEIGHT + OFFSET * 2);
         menu.creatMenu();
-        StdDraw.pause(3000);
+        StdDraw.pause(PAUSETIME * 3);
 
         Deciding set = new Deciding(WIDTH, HEIGHT);
 
@@ -148,13 +146,13 @@ public class Engine {
                 String smallStr = set.showString();
                 set = new Deciding(WIDTH, HEIGHT);
                 for (int j = 0; j < smallStr.length(); j++) {
-                    char thisChar= smallStr.charAt(j);
+                    char thisChar = smallStr.charAt(j);
                     set.changeEnv(thisChar);
                 }
                 ter = set.showTE();
                 finalWorldFrame = set.showTile();
                 ter.renderFrame(finalWorldFrame);
-                StdDraw.pause(1000);
+                StdDraw.pause(PAUSETIME);
                 continue;
                 //以上为恢复上次保存的东西
             }
@@ -176,7 +174,7 @@ public class Engine {
                     StdDraw.textLeft(OFFSET, OFFSET, description);
                     display.normalMenu();
                     StdDraw.show();
-                    StdDraw.pause(1000);
+                    StdDraw.pause(PAUSETIME);
                 } else {
                     finalWorldFrame = set.showTile();
                     ter.renderFrame(finalWorldFrame);
@@ -185,7 +183,7 @@ public class Engine {
                     StdDraw.textLeft(OFFSET, OFFSET, description);
                     display.normalMenu();
                     StdDraw.show();
-                    StdDraw.pause(1000);
+                    StdDraw.pause(PAUSETIME);
                 }
             }
             //三个移动，每次pause1秒
@@ -198,7 +196,7 @@ public class Engine {
                 StdDraw.textLeft(OFFSET, OFFSET, description);
                 display.normalMenu();
                 StdDraw.show();
-                StdDraw.pause(1000);
+                StdDraw.pause(PAUSETIME);
             }
         }
         return set.showTile();
