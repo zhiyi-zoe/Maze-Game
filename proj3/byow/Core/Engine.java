@@ -24,7 +24,7 @@ public class Engine {
         /**
          * 可能需要把输入n时切换一个界面，显示“请输入seed，以s结尾”，并实时呈现输入的seed。其他显示地图的页面上需要呈现已经输入了哪些东西->调用set1.getAlready()即可。
          */
-        SetMenu menu = new SetMenu(WIDTH + 20, HEIGHT + 20);
+        SetMenu menu = new SetMenu(WIDTH + 2 * OFFSET, HEIGHT + 2 * OFFSET);
         boolean gameBegin = false;
         Deciding set1 = new Deciding(WIDTH, HEIGHT);
         while (true) {

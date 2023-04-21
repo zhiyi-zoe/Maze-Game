@@ -24,7 +24,7 @@ public class HeadsUpDisplay {
     }
     public String mouseText() {
         StdDraw.setPenColor(Color.WHITE);
-        int mouseX = (int) StdDraw.mouseX() - OFFSET;
+        int mouseX = (int) StdDraw.mouseX() - OFFSET + 2;
         int mouseY = (int) StdDraw.mouseY() - OFFSET;
         String description = "";
         if ((mouseX >= 0 && mouseX < width) && (mouseY >= 0 && mouseY < height)) {
