@@ -4,8 +4,8 @@ import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 
 public class MoveControl {
-    public TETile[][] world;
-    public int[] avatar;
+    private TETile[][] world;
+    private int[] avatar;
     public MoveControl(TETile[][] world, int[] avatar) {
         this.world = world;
         this.avatar = avatar;
@@ -21,6 +21,9 @@ public class MoveControl {
             case 'S' -> moveY--;
             case 'A' -> moveX--;
             case 'D' -> moveX++;
+            default -> {
+                return result;
+            }
         }
         TETile next = world[currentX + moveX][currentY + moveY];
         if (!next.equals(Tileset.WALL)) {
