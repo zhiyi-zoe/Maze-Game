@@ -3,14 +3,18 @@ import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 
 public class SetWall {
-    public TETile[][] world;
+    private TETile[][] world;
+    private int width;
+    private int height;
     public SetWall(TETile[][] w) {
         this.world = w;
+        this.width = world.length;
+        this.height = world[0].length;
     }
 
     public TETile[][] getWorld() {
-        for (int x = 0; x < 80; x++) {
-            for (int y = 0; y < 30; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 buildWall(x, y);
             }
         }
