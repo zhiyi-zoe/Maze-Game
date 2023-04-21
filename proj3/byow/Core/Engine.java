@@ -126,6 +126,11 @@ public class Engine {
                 finalWorldFrame = set.showTile();
                 ter.renderFrame(finalWorldFrame);
                 StdDraw.pause(1000);
+                HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
+                String description = display.mouseText();
+                StdDraw.textLeft(OFFSET, OFFSET, description);
+                StdDraw.show();
+                StdDraw.pause(1000);
             }
         }
         return set.showTile();
