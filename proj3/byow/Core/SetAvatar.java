@@ -6,9 +6,9 @@ import byow.TileEngine.Tileset;
 import java.util.List;
 
 public class SetAvatar {
-    public TETile[][] world;
+    private TETile[][] world;
     private List<int[]> doorLocation;
-    public int[] avatar;
+    private int[] avatar;
     public SetAvatar(TETile[][] world, List<int[]> d) {
         this.world = world;
         this.doorLocation = d;

@@ -5,9 +5,9 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.awt.*;
 
 public class SetMenu {
-    public int widthTotal;
-    public int heightTotal;
-    public boolean gameBegin;
+    private int widthTotal;
+    private int heightTotal;
+    private boolean gameBegin;
     public SetMenu(int widthTotal, int heightTotal) {
         this.widthTotal = widthTotal;
         this.heightTotal = heightTotal;
@@ -33,16 +33,5 @@ public class SetMenu {
         StdDraw.text(centralWidth, centralHeight - textGap / 2, "Replay Game (R)");
         StdDraw.text(centralWidth, centralHeight - textGap / 2 / 2 - textGap / 2, "Quit (Q)");
         StdDraw.show();
-    }
-    public void startMenu() {
-        this.gameBegin = false;
-        while (!gameBegin) {
-            creatMenu();
-            StdDraw.pause(1000);
-        }
-    }
-    public static void main(String[] args) {
-        SetMenu menu = new SetMenu(100, 50);
-        menu.startMenu();
     }
 }

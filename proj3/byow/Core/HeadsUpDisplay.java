@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeadsUpDisplay {
-    public int width;
-    public int height;
-    public TETile[][] world;
-    public int[] avatar;
-    public List<TETile> appearanceList;
+    private static int offset = 2 * 2 * 2 + 2;
+    private int width;
+    private int height;
+    private TETile[][] world;
+    private int[] avatar;
+    private List<TETile> appearanceList;
     public HeadsUpDisplay(TETile[][] world, int[] avatar) {
         this.width = world.length;
         this.height = world[0].length;
@@ -22,17 +23,24 @@ public class HeadsUpDisplay {
         this.appearanceList = creatAppearanceList();
     }
     public String mouseText() {
-        Font fontSmall = new Font("Monaco", Font.BOLD, 20);
-        StdDraw.setFont(fontSmall);
-        int mouseX = (int) StdDraw.mouseX();
-        int mouseY = (int) StdDraw.mouseY();
-        TETile current = world[mouseX][mouseY];
-        String description = current.description();
+        //Font fontSmall = new Font("Monaco", Font.BOLD, 20);
+        //StdDraw.setFont(fontSmall);
+        StdDraw.setPenColor(Color.WHITE);
+        int mouseX = (int) StdDraw.mouseX() - offset;
+        int mouseY = (int) StdDraw.mouseY() - offset;
+        String description = "";
+        if ((mouseX >= 0 && mouseX < width) && (mouseY >= 0 && mouseY < height)) {
+            TETile current = world[mouseX][mouseY];
+            description = current.description();
+        }
         return description;
         //int numYTiles = height;
         //StdDraw.text(0, numYTiles, description);
         //renderFrame(world);
         //StdDraw.pause(10);
+    }
+    public TETile[][] getWorld() {
+        return world;
     }
 
     public List<TETile> creatAppearanceList() {

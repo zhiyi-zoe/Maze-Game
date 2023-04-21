@@ -5,7 +5,7 @@ import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 
 public class SetHallways {
-    public TETile[][] world;
+    private TETile[][] world;
     private List<int[]> doorLocation;
     public SetHallways(TETile[][] w, List<int[]> d) {
         this.world = w;
@@ -27,7 +27,7 @@ public class SetHallways {
             roomConnect(x1, y1, x2, y2);
         }
     }
-    public void roomConnect (int x1, int y1, int x2, int y2) {
+    public void roomConnect(int x1, int y1, int x2, int y2) {
         int currX = x1;
         int currY = y1;
         while (currX != x2 || currY != y2) {
