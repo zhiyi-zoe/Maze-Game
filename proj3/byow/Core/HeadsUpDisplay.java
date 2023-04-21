@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeadsUpDisplay {
-    private static int offset = 2 * 2 * 2 + 2;
+    private static final int OFFSET = 10;
     private int width;
     private int height;
     private TETile[][] world;
@@ -24,8 +24,8 @@ public class HeadsUpDisplay {
     }
     public String mouseText() {
         StdDraw.setPenColor(Color.WHITE);
-        int mouseX = (int) StdDraw.mouseX() - offset;
-        int mouseY = (int) StdDraw.mouseY() - offset;
+        int mouseX = (int) StdDraw.mouseX() - OFFSET;
+        int mouseY = (int) StdDraw.mouseY() - OFFSET;
         String description = "";
         if ((mouseX >= 0 && mouseX < width) && (mouseY >= 0 && mouseY < height)) {
             TETile current = world[mouseX][mouseY];
@@ -33,10 +33,6 @@ public class HeadsUpDisplay {
         }
         System.out.println(description);
         return description;
-        //int numYTiles = height;
-        //StdDraw.text(0, numYTiles, description);
-        //renderFrame(world);
-        //StdDraw.pause(10);
     }
     public TETile[][] getWorld() {
         return world;
@@ -65,6 +61,15 @@ public class HeadsUpDisplay {
             nextAppearance = appearanceList.get(currentAppearanceIndex + 1);
         }
         world[currentX][currentY] = nextAppearance;
+    }
+
+    public void normalMenu() {
+        StdDraw.textLeft(OFFSET + OFFSET / 2, height + OFFSET + OFFSET / 2, "Menu");
+        StdDraw.textLeft(OFFSET * (2 + 1), height + OFFSET + OFFSET / 2, "Up (W)");
+        StdDraw.textLeft(OFFSET * 2 * 2, height + OFFSET + OFFSET / 2, "Down (S)");
+        StdDraw.textLeft(OFFSET * (2 * 2 + 1), height + OFFSET + OFFSET / 2, "Left (A)");
+        StdDraw.textLeft(OFFSET * (2 * 2 + 2), height + OFFSET + OFFSET / 2, "Right (D)");
+        StdDraw.textLeft(OFFSET * 2 * 2 * 2 - OFFSET / 2, height + OFFSET + OFFSET / 2, "Quit Game (:Q)");
     }
     /* Please use creatMenu() in SetMenu Class, this one is not be used anymore.
 
