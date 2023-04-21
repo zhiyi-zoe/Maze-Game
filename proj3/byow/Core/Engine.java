@@ -22,6 +22,13 @@ public class Engine {
      */
     public void interactWithKeyboard() {
         //初始页面呈现
+        SetMenu menu = new SetMenu(WIDTH + 20, HEIGHT + 20);
+        boolean gameBegin = false;
+        while (!gameBegin) {
+            menu.creatMenu();
+            StdDraw.pause(500);
+            //我需要判断输入的是什么，然后如果是nlq，改gameBegin
+        }
         Deciding set = new Deciding(WIDTH, HEIGHT);
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
@@ -61,8 +68,7 @@ public class Engine {
         // that works for many different input types.
         SetMenu menu = new SetMenu(WIDTH + 20, HEIGHT + 20);
         menu.creatMenu();
-        StdDraw.show();
-        StdDraw.pause(1000);
+        StdDraw.pause(3000);
 
         Deciding set = new Deciding(WIDTH, HEIGHT);
 
@@ -101,8 +107,12 @@ public class Engine {
                     ter = set.showTE();
                     finalWorldFrame = set.showTile();
                     ter.renderFrame(finalWorldFrame);
+                    StdDraw.pause(1000);
                     HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
-
+                    String description = display.mouseText();
+                    int numYTiles = HEIGHT;
+                    StdDraw.text(0, numYTiles, description);
+                    StdDraw.show();
                     StdDraw.pause(1000);
                 } else {
                     finalWorldFrame = set.showTile();
