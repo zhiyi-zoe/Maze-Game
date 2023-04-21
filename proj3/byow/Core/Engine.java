@@ -3,10 +3,8 @@ package byow.Core;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 import edu.princeton.cs.algs4.StdDraw;
-
-import java.util.List;
 import java.io.File;
-import java.io.IOException;
+
 
 public class Engine {
     TERenderer ter = new TERenderer();
@@ -69,7 +67,6 @@ public class Engine {
                         ter = set1.showTE();
                     }
                 }
-
             }
             if (gameBegin) {
                 finalWorldFrame = set1.showTile();
@@ -167,7 +164,6 @@ public class Engine {
                     display.normalMenu();
                     StdDraw.show();
                     StdDraw.pause(1000);
-
                 }
             }
             //三个移动，每次pause1秒
