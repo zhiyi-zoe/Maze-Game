@@ -154,17 +154,14 @@ public class Engine {
                 ter.renderFrame(finalWorldFrame);
                 StdDraw.pause(PAUSETIME);
                 continue;
-                //以上为恢复上次保存的东西
             }
             set.changeEnv(input.charAt(i));
-
             if (input.charAt(i) == 'q' || input.charAt(i) == 'Q') {
                 if (set.isQuit()) {
                     //System.exit(0);
                     break;
                 }
             }
-            //生成初始界面
             if (input.charAt(i) == 's' || input.charAt(i) == 'S') {
                 if (set.isNew()) {
                     ter = set.showTE();
@@ -187,7 +184,6 @@ public class Engine {
                     StdDraw.pause(PAUSETIME);
                 }
             }
-            //三个移动，每次pause1秒
             char m = input.charAt(i);
             if (hasString.indexOf(m) != -1) {
                 finalWorldFrame = set.showTile();
