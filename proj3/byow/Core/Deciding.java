@@ -66,8 +66,7 @@ public class Deciding {
             a = true;
             space = new TERenderer();
             space.initialize(WIDTH + 2 * 2 * 2 * 2 + 2 * 2, HEIGHT + 2 * 2 * 2 * 2 + 2 * 2, 2 * 2 * 2 + 2, 2 * 2 * 2 + 2);
-            Out out = new Out("./out/production/proj3/output.txt");
-            out.print("");
+
         }
         if (b && (input == 'Q' || input == 'q')) {
             String str = already.substring(0, already.length() - 2);
