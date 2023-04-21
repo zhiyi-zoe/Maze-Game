@@ -149,14 +149,5 @@ public class BuildRooms {
     public List getCoin() {
         return coinPos;
     }
-    public static void main(String[] args) {
-        //用于测试，可删
-        TERenderer ter = new TERenderer();
-        ter.initialize(80, 30);
-        BuildRooms room = new BuildRooms(100, 80, 30);
-        TETile[][] world = room.getTile();
-        ter.renderFrame(world);
-        System.out.println(room.getOpen());
-    }
 
 }

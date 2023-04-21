@@ -54,6 +54,9 @@ public class Engine {
                     //以上为恢复上次保存的东西
                 }
                 set1.changeEnv(a);//进行改变
+                if (a == 'n' || a == 'N') {
+
+                }
                 if (a == 'q' || a == 'Q') {
                     gameBegin = true;
                     if (set1.isQuit()) {
