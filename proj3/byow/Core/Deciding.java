@@ -2,15 +2,8 @@ package byow.Core;
 
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
-import byow.TileEngine.Tileset;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
-import edu.princeton.cs.algs4.StdDraw;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 public class Deciding {
@@ -65,7 +58,7 @@ public class Deciding {
         if (input == 'n' || input == 'N') {
             a = true;
             space = new TERenderer();
-            space.initialize(WIDTH + 20, HEIGHT + 20, 10, 10);
+            space.initialize(WIDTH + 2 * 2 * 2 * 2 + 2 * 2, HEIGHT + 2 * 2 * 2 * 2 + 2 * 2, 2 * 2 * 2 + 2, 2 * 2 * 2 + 2);
             Out out = new Out("./out/production/proj3/output.txt");
             out.print();
         }
@@ -85,20 +78,20 @@ public class Deciding {
         }
 
         if (input == 'w' || input == 'W') {
-            MoveControl MC = new MoveControl(worldFrameFin, avatarPos);
-            avatarPos = MC.oneMovement('W');
+            MoveControl mControl = new MoveControl(worldFrameFin, avatarPos);
+            avatarPos = mControl.oneMovement('W');
         }
         if (!a && (input == 's' || input == 'S')) {
-            MoveControl MC = new MoveControl(worldFrameFin, avatarPos);
-            avatarPos = MC.oneMovement('S');
+            MoveControl mControl = new MoveControl(worldFrameFin, avatarPos);
+            avatarPos = mControl.oneMovement('S');
         }
         if (input == 'A' || input == 'a') {
-            MoveControl MC = new MoveControl(worldFrameFin, avatarPos);
-            avatarPos = MC.oneMovement('A');
+            MoveControl mControl = new MoveControl(worldFrameFin, avatarPos);
+            avatarPos = mControl.oneMovement('A');
         }
         if (input == 'D' || input == 'd') {
-            MoveControl MC = new MoveControl(worldFrameFin, avatarPos);
-            avatarPos = MC.oneMovement('D');
+            MoveControl mControl = new MoveControl(worldFrameFin, avatarPos);
+            avatarPos = mControl.oneMovement('D');
         }
         if (input == 'L' || input == 'l') {
             In in = new In("./out/production/proj3/output.txt");
@@ -130,6 +123,9 @@ public class Deciding {
     }
     public boolean isNew() {
         return isNew;
+    }
+    public int[] showAva() {
+        return avatarPos;
     }
 
 }

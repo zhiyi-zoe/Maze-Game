@@ -21,7 +21,14 @@ public class Engine {
      * including inputs from the main menu.
      */
     public void interactWithKeyboard() {
+        //初始页面呈现
+        Deciding set = new Deciding(WIDTH, HEIGHT);
+        while (true) {
+            if (StdDraw.hasNextKeyTyped()) {
+                char a = StdDraw.nextKeyTyped();
 
+            }
+        }
     }
 
     /**
@@ -56,6 +63,7 @@ public class Engine {
         menu.creatMenu();
         StdDraw.show();
         StdDraw.pause(1000);
+
         Deciding set = new Deciding(WIDTH, HEIGHT);
 
 
@@ -77,6 +85,7 @@ public class Engine {
                 finalWorldFrame = set.showTile();
                 ter.renderFrame(finalWorldFrame);
                 StdDraw.pause(1000);
+                continue;
                 //以上为恢复上次保存的东西
             }
             set.changeEnv(input.charAt(i));
@@ -92,6 +101,8 @@ public class Engine {
                     ter = set.showTE();
                     finalWorldFrame = set.showTile();
                     ter.renderFrame(finalWorldFrame);
+                    HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
+
                     StdDraw.pause(1000);
                 } else {
                     finalWorldFrame = set.showTile();
