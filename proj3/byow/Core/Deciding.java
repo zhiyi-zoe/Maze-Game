@@ -20,6 +20,9 @@ public class Deciding {
     private int[] avatarPos;
     private boolean quit;
     private boolean isNew;
+    private boolean first;
+    private boolean notInclude;
+
 
     //private String hasString = "wWaAsSdDqQ:NnLl";
     public Deciding(int width, int height) {
@@ -31,6 +34,8 @@ public class Deciding {
         WIDTH = width;
         HEIGHT = height;
         quit = false;
+        first = true;
+        notInclude = false;
         worldFrameFin = new TETile[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -41,7 +46,9 @@ public class Deciding {
 
     public void changeEnv(char input) {
         //判断seed输入结束，创建新世界
-        already += input;
+        if (!notInclude) {
+            already += input;
+        }
         if (a && (input == 's' || input == 'S')) {
             a = false;
             seed = Long.parseLong(num);
@@ -108,13 +115,21 @@ public class Deciding {
             MoveControl mControl = new MoveControl(worldFrameFin, avatarPos);
             avatarPos = mControl.oneMovement('D');
         }
-        if (input == 'L' || input == 'l') {
+        if (first && (input == 'r' || input == 'R')) {
             In in = new In("output.txt");
             String savedLine = in.readLine();
             already += savedLine;
             already = already.substring(1);
+            first = false;
         }
-
+        if (first && (input == 'L' || input == 'l')) {
+            In in = new In("output.txt");
+            String savedLine = in.readLine();
+            already += savedLine;
+            already = already.substring(1);
+            first = false;
+        }
+        notInclude = false;
     }
 
     public TERenderer showTE() {
@@ -144,6 +159,12 @@ public class Deciding {
     }
     public String getAlready() {
         return already;
+    }
+    public void Do() {
+        first = false;
+    }
+    public void Include() {
+        notInclude = true;
     }
 
 }

@@ -17,58 +17,39 @@ public class Engine {
     public static final int PAUSETIME = 500;
     private String hasString = "wWaAdD";
     TETile[][] finalWorldFrame;
+    private boolean gameBegin = false;
+    private boolean showMap = false;
+    private boolean showSeed = false;
+    private boolean isReplay = true;
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
      * including inputs from the main menu.
      */
     public void interactWithKeyboard() {
-        //初始页面呈现
         SetMenu menu = new SetMenu(WIDTH + 2 * OFFSET, HEIGHT + 2 * OFFSET);
-        boolean gameBegin = false;
-        boolean showMap = false;
         Deciding set1 = new Deciding(WIDTH, HEIGHT);
-        boolean showSeed = false;
-        boolean isReplay = true;
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char a = StdDraw.nextKeyTyped();
                 if (isReplay && (a == 'r' || a == 'R')) {
-                    gameBegin = true;
                     File file = new File("output.txt");
                     if (!file.exists() || file.length() == 0) {
                         System.exit(0);
                     }
-                    set1.changeEnv('l');//读个文件，改个already
-                    String smallStr = set1.showString();
-                    Replay play = new Replay(smallStr);
-                    play.play();
-                    set1 = new Deciding(WIDTH, HEIGHT);
-                    for (int j = 0; j < smallStr.length(); j++) {
-                        char thisChar = smallStr.charAt(j);
-                        set1.changeEnv(thisChar);
+                    set1 = changeDeciding(set1, 'r');
+                    set1.Include();
+                }
+                if (isReplay && (a == 'l' || a == 'L')) {
+                    File file = new File("output.txt");
+                    if (!file.exists() || file.length() == 0) {
+                        System.exit(0);
                     }
-                    showMap = true;
-                    ter = set1.showTE();
+                    set1 = changeDeciding(set1, 'l');
+                    set1.Include();
                 }
                 isReplay = false;
-                if (a == 'l' || a == 'L') {
-                    gameBegin = true;
-                    File file = new File("output.txt");
-                    if (!file.exists() || file.length() == 0) {
-                        System.exit(0);
-                    }
-                    set1.changeEnv(a);
-                    String smallStr = set1.showString();
-                    set1 = new Deciding(WIDTH, HEIGHT);
-                    for (int j = 0; j < smallStr.length(); j++) {
-                        char thisChar = smallStr.charAt(j);
-                        set1.changeEnv(thisChar);
-                    }
-                    showMap = true;
-                    ter = set1.showTE();
-                }
-
+                set1.Do();
                 set1.changeEnv(a); //进行改变
                 if (a == 'n' || a == 'N') {
                     showSeed = true;
@@ -80,7 +61,6 @@ public class Engine {
                         System.exit(0);
                     }
                 }
-                //生成初始界面
                 if (a == 's' || a == 'S') {
                     showMap = true;
                     showSeed = false;
@@ -92,7 +72,6 @@ public class Engine {
                     HeadsUpDisplay display1 = new HeadsUpDisplay(finalWorldFrame, set1.showAva());
                     display1.changeAppearance();
                 }
-
             }
             if (!gameBegin) {
                 menu.creatMenu();
@@ -105,7 +84,6 @@ public class Engine {
                 StdDraw.text(WIDTH / 2 + OFFSET, HEIGHT / 2 + OFFSET, "Your Seed: " + into);
                 StdDraw.show();
             }
-
             if (showMap) {
                 finalWorldFrame = set1.showTile();
                 ter.renderFrame(finalWorldFrame);
@@ -116,6 +94,24 @@ public class Engine {
                 StdDraw.show();
             }
         }
+    }
+    public Deciding changeDeciding(Deciding set, Character a) {
+        Deciding set11 = set;
+        set11.changeEnv('l');
+        String smallStr = set11.showString();
+        if (a == 'r' || a == 'R') {
+            Replay play = new Replay(smallStr);
+            play.play();
+        }
+        set11 = new Deciding(WIDTH, HEIGHT);
+        for (int j = 0; j < smallStr.length(); j++) {
+            char thisChar = smallStr.charAt(j);
+            set11.changeEnv(thisChar);
+        }
+        showMap = true;
+        gameBegin = true;
+        ter = set11.showTE();
+        return set11;
     }
 
     /**
@@ -150,9 +146,6 @@ public class Engine {
         menu.creatMenu();
         StdDraw.pause(PAUSETIME * 3);
         Deciding set = new Deciding(WIDTH, HEIGHT);
-
-
-
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == 'l' || input.charAt(i) == 'L') {
                 File file = new File("output.txt");
