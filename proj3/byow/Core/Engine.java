@@ -14,7 +14,7 @@ public class Engine {
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
     public static final int OFFSET = 10;
-    public static final int PAUSETIME = 1000;
+    public static final int PAUSETIME = 500;
     private String hasString = "wWaAdD";
     TETile[][] finalWorldFrame;
 
@@ -50,13 +50,8 @@ public class Engine {
                     }
                     showMap = true;
                     ter = set1.showTE();
-                    /**
-                    finalWorldFrame = set1.showTile();
-                    ter.renderFrame(finalWorldFrame);
-                    StdDraw.show();
-                    //以上为恢复上次保存的东西
-                     */
                 }
+
                 set1.changeEnv(a); //进行改变
                 if (a == 'n' || a == 'N') {
 
