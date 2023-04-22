@@ -77,6 +77,9 @@ public class Engine {
                         ter = set1.showTE();
                     }
                 }
+                if (a == 'p' || a == 'P') {
+
+                }
 
             }
             if (showSeed) {
@@ -94,6 +97,7 @@ public class Engine {
                 HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set1.showAva());
                 String description = display.mouseText();
                 StdDraw.textLeft(OFFSET, OFFSET, description);
+                StdDraw.textLeft(3 * OFFSET, OFFSET, "Already input: " + set1.getAlready());
                 display.normalMenu();
                 StdDraw.show();
             }
