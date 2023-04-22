@@ -63,12 +63,13 @@ public class HeadsUpDisplay {
     }
 
     public void normalMenu() {
-        StdDraw.textLeft(OFFSET + OFFSET / 2, height + OFFSET + OFFSET / 2, "Menu");
-        StdDraw.textLeft(OFFSET * (2 + 1), height + OFFSET + OFFSET / 2, "Up (W)");
-        StdDraw.textLeft(OFFSET * 2 * 2, height + OFFSET + OFFSET / 2, "Down (S)");
-        StdDraw.textLeft(OFFSET * (2 * 2 + 1), height + OFFSET + OFFSET / 2, "Left (A)");
-        StdDraw.textLeft(OFFSET * (2 * 2 + 2), height + OFFSET + OFFSET / 2, "Right (D)");
-        StdDraw.textLeft(OFFSET * 2 * 2 * 2 - OFFSET / 2, height + OFFSET + OFFSET / 2, "Quit Game (:Q)");
+        StdDraw.textLeft(OFFSET, height + OFFSET + OFFSET / 2, "Menu");
+        StdDraw.textLeft(OFFSET * 2, height + OFFSET + OFFSET / 2, "Up (W)");
+        StdDraw.textLeft(OFFSET * (2 + 1), height + OFFSET + OFFSET / 2, "Down (S)");
+        StdDraw.textLeft(OFFSET * 2 * 2, height + OFFSET + OFFSET / 2, "Left (A)");
+        StdDraw.textLeft(OFFSET * (2 * 2 + 1), height + OFFSET + OFFSET / 2, "Right (D)");
+        StdDraw.textLeft(OFFSET * (2 * 2 + 2), height + OFFSET + OFFSET / 2, "Change Appearance (P)");
+        StdDraw.textLeft(OFFSET * 2 * 2 * 2, height + OFFSET + OFFSET / 2, "Quit Game (:Q)");
     }
     public void enterSeed(String seed) {
         StdDraw.text(width / 2 + OFFSET, height / 2 + OFFSET, seed);
