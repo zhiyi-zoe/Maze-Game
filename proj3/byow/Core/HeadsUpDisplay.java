@@ -40,7 +40,6 @@ public class HeadsUpDisplay {
     public List<TETile> creatAppearanceList() {
         List<TETile> al = new ArrayList<>();
         al.add(Tileset.AVATAR);
-        al.add(Tileset.FLOWER);
         al.add(Tileset.GRASS);
         al.add(Tileset.MOUNTAIN);
         al.add(Tileset.SAND);
