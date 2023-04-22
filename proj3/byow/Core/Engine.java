@@ -29,12 +29,29 @@ public class Engine {
         boolean showMap = false;
         Deciding set1 = new Deciding(WIDTH, HEIGHT);
         boolean showSeed = false;
+        boolean isReplay = true;
         while (true) {
-            if (!gameBegin) {
-                menu.creatMenu();
-            }
             if (StdDraw.hasNextKeyTyped()) {
                 char a = StdDraw.nextKeyTyped();
+                if (isReplay && (a == 'r' || a == 'R')) {
+                    gameBegin = true;
+                    File file = new File("output.txt");
+                    if (!file.exists() || file.length() == 0) {
+                        System.exit(0);
+                    }
+                    set1.changeEnv('l');//读个文件，改个already
+                    String smallStr = set1.showString();
+                    Replay play = new Replay(smallStr);
+                    play.play();
+                    set1 = new Deciding(WIDTH, HEIGHT);
+                    for (int j = 0; j < smallStr.length(); j++) {
+                        char thisChar = smallStr.charAt(j);
+                        set1.changeEnv(thisChar);
+                    }
+                    showMap = true;
+                    ter = set1.showTE();
+                }
+                isReplay = false;
                 if (a == 'l' || a == 'L') {
                     gameBegin = true;
                     File file = new File("output.txt");
@@ -54,7 +71,6 @@ public class Engine {
 
                 set1.changeEnv(a); //进行改变
                 if (a == 'n' || a == 'N') {
-
                     showSeed = true;
                     gameBegin = true;
                 }
@@ -77,6 +93,9 @@ public class Engine {
                     display1.changeAppearance();
                 }
 
+            }
+            if (!gameBegin) {
+                menu.creatMenu();
             }
             if (showSeed) {
                 StdDraw.clear(Color.BLACK);
@@ -130,7 +149,6 @@ public class Engine {
         SetMenu menu = new SetMenu(WIDTH + OFFSET * 2, HEIGHT + OFFSET * 2);
         menu.creatMenu();
         StdDraw.pause(PAUSETIME * 3);
-
         Deciding set = new Deciding(WIDTH, HEIGHT);
 
 
