@@ -129,6 +129,7 @@ public class Deciding {
             already = already.substring(1);
             first = false;
         }
+
         notInclude = false;
     }
 

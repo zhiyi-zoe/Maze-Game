@@ -26,6 +26,16 @@ public class Replay {
     public void play() {
         for (int i = 0; i < input.length(); i++) {
             set.changeEnv(input.charAt(i));
+            if (input.charAt(i) == 'p' || input.charAt(i) == 'P') {
+                finalWorldFrame = set.showTile();
+                ter.renderFrame(finalWorldFrame);
+                HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
+                display.normalMenu();
+                StdDraw.textLeft(3 * OFFSET, OFFSET, "Already input: " + set.getAlready());
+                display.changeAppearance();
+                StdDraw.show();
+                StdDraw.pause(PAUSETIME);
+            }
             if (input.charAt(i) == 's' || input.charAt(i) == 'S') {
                 if (set.isNew()) {
                     ter = set.showTE();

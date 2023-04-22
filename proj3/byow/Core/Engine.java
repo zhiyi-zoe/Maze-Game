@@ -107,6 +107,11 @@ public class Engine {
         for (int j = 0; j < smallStr.length(); j++) {
             char thisChar = smallStr.charAt(j);
             set11.changeEnv(thisChar);
+            if (smallStr.charAt(j) == 'p' || smallStr.charAt(j) == 'P') {
+                TETile[][] thisWorld = set11.showTile();
+                HeadsUpDisplay display1 = new HeadsUpDisplay(thisWorld, set11.showAva());
+                display1.changeAppearance();
+            }
         }
         showMap = true;
         gameBegin = true;
