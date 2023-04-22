@@ -78,7 +78,8 @@ public class Engine {
                     }
                 }
                 if (a == 'p' || a == 'P') {
-
+                    HeadsUpDisplay display1 = new HeadsUpDisplay(finalWorldFrame, set1.showAva());
+                    display1.changeAppearance();
                 }
 
             }
