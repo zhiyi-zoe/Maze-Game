@@ -96,8 +96,7 @@ public class Engine {
                 finalWorldFrame = set1.showTile();
                 ter.renderFrame(finalWorldFrame);
                 HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set1.showAva());
-                String description = display.mouseText();
-                StdDraw.textLeft(OFFSET, OFFSET, description);
+                display.mouseText();
                 StdDraw.textLeft(3 * OFFSET, OFFSET, "Already input: " + set1.getAlready());
                 display.normalMenu();
                 StdDraw.show();
@@ -173,8 +172,7 @@ public class Engine {
                     finalWorldFrame = set.showTile();
                     ter.renderFrame(finalWorldFrame);
                     HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
-                    String description = display.mouseText();
-                    StdDraw.textLeft(OFFSET, OFFSET, description);
+                    display.mouseText();
                     display.normalMenu();
                     StdDraw.show();
                     StdDraw.pause(PAUSETIME);
@@ -182,8 +180,7 @@ public class Engine {
                     finalWorldFrame = set.showTile();
                     ter.renderFrame(finalWorldFrame);
                     HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
-                    String description = display.mouseText();
-                    StdDraw.textLeft(OFFSET, OFFSET, description);
+                    display.mouseText();
                     display.normalMenu();
                     StdDraw.show();
                     StdDraw.pause(PAUSETIME);
@@ -194,8 +191,7 @@ public class Engine {
                 finalWorldFrame = set.showTile();
                 ter.renderFrame(finalWorldFrame);
                 HeadsUpDisplay display = new HeadsUpDisplay(finalWorldFrame, set.showAva());
-                String description = display.mouseText();
-                StdDraw.textLeft(OFFSET, OFFSET, description);
+                display.mouseText();
                 display.normalMenu();
                 StdDraw.show();
                 StdDraw.pause(PAUSETIME);

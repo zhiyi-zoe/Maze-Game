@@ -22,7 +22,7 @@ public class HeadsUpDisplay {
         this.avatar = avatar;
         this.appearanceList = creatAppearanceList();
     }
-    public String mouseText() {
+    public void mouseText() {
         StdDraw.setPenColor(Color.WHITE);
         int mouseX = (int) StdDraw.mouseX() - OFFSET + 2;
         int mouseY = (int) StdDraw.mouseY() - OFFSET;
@@ -31,7 +31,7 @@ public class HeadsUpDisplay {
             TETile current = world[mouseX][mouseY];
             description = current.description();
         }
-        return description;
+        StdDraw.textLeft(OFFSET, OFFSET, description);
     }
     public TETile[][] getWorld() {
         return world;
